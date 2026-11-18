@@ -4,6 +4,31 @@
 
 I built an N-body gravity simulator in Python/NumPy that integrates Newton’s law of gravity with the Verlet method and then tests how well it holds up. I started with a two-body orbit to check energy conservation and time reversibility, then used initial conditions from NASA’s JPL Horizons system to integrate the Solar System (all eight planets, the Moon, and Pluto) for 38.3 years. The energy error stays bounded and shrinks as Δt², dropping by about a factor of 1000 when the time step is 32× smaller; the method is effectively time-reversible, returning to its starting point within ~10⁻¹¹ AU after 50 orbits forward and back; and the Sun drifts up to 1.79 solar radii from its starting position as it orbits the Solar System’s center of mass, primarily driven by Jupiter’s gravitational influence
 
+## Installation
+
+Requires Python 3.10 or newer.
+
+```bash
+git clone https://github.com/lesliebogen/nbody-solar-system.git
+cd nbody-solar-system
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Using conda instead? `conda create -n nbody python=3.12 numpy matplotlib requests jupyterlab`, then `conda activate nbody`.
+
+## Usage
+
+```bash
+jupyter lab nbody_solar_system.ipynb
+```
+
+Run all cells in order (**Run → Run All Cells**). The full notebook takes a few minutes on a laptop, and it saves every figure as a PNG in the working folder.
+
+- **Section 3 needs an internet connection:** it downloads initial conditions from the [JPL Horizons API](https://ssd-api.jpl.nasa.gov/doc/horizons.html). To change the start date, edit `date` and `years_to_integrate` in that section.
+- **Section 4's real-GR test is off by default** because it's slow. Set `RUN_REAL_GR = True` in the precession cell to run it.
+
 ## Physics and method
 
 **Gravity.** Each body feels the Newtonian pull of every other body:
