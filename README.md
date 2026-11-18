@@ -60,7 +60,7 @@ Starting from JPL Horizons positions and velocities, I integrated the Sun, eight
 
 ![Inner Solar System orbits](figures/fig_1c_inner.png)
 
-![The Sun's motion relative to its starting position](figures/figures/fig_1c_sun_wobble.png)
+![The Sun's motion relative to its starting position](figures/fig_1c_sun_wobble.png)
 
 The Sun doesn't sit still. Pulled mainly by Jupiter, it drifts up to 1.79 solar radii from its starting position as it orbits the Solar System's center of mass.
 
