@@ -2,7 +2,7 @@
 
 ## Introduction
 
-I built an N-body gravity simulator in Python/NumPy that integrates Newton’s law of gravity with the Verlet method and then tests how well it holds up. I started with a two-body orbit to check energy conservation and time reversibility, then used initial conditions from NASA’s JPL Horizons system to integrate the Solar System (all eight planets, the Moon, and Pluto) for 38.3 years. The energy error stays bounded and shrinks as Δt², dropping by about a factor of 1000 when the time step is 32× smaller; the method is effectively time-reversible, returning to its starting point within ~10⁻¹¹ AU after 50 orbits forward and back; and the Sun drifts up to 1.79 solar radii from its starting position as it orbits the Solar System’s center of mass, primarily driven by Jupiter’s gravitational influence
+I built an N-body gravity simulator in Python/NumPy that integrates Newton’s law of gravity with the Verlet method and then tests how well it holds up. I started with a two-body orbit to check energy conservation and time reversibility, then used initial conditions from NASA’s JPL Horizons system to integrate the Solar System (all eight planets, the Moon, and Pluto) for 38.3 years. The energy error stays bounded and shrinks as Δt², dropping by about a factor of 1000 when the time step is 32× smaller; the method is effectively time-reversible, returning to its starting point within ~10⁻¹¹ AU after 50 orbits forward and back; and the Sun drifts up to 1.79 solar radii from its starting position as it orbits the Solar System’s center of mass, primarily driven by Jupiter’s gravitational influence.
 
 ## Installation
 
