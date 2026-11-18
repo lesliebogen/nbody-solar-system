@@ -71,10 +71,5 @@ The Sun doesn't sit still. Pulled mainly by Jupiter, it drifts up to 1.79 solar 
 I compared Mercury's orbit with the Sun alone, with a 10× heavier Jupiter added, and with a relativistic-style 1/r² correction. Both perturbations make the ellipse rotate into a rosette. I'm currently measuring how much precession the integrator itself introduces at this step size, so the physical effects can be separated from numerical error before I report rates.
 
 
-
-## Figures
-
-
-
 ## Full Report
 
