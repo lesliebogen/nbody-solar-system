@@ -46,6 +46,10 @@ For a two-body elliptical orbit (initial speed set to 80% of the circular value)
 
 Across six step sizes (45 to 1440 steps per orbit), the error stays bounded and shrinks as Δt²: max |ΔE| drops from 9.2 × 10⁻⁸ to 1.0 × 10⁻¹⁰ when the step is 32× smaller. That's the long-term behavior expected from a symplectic integrator.
 
+![Maximum energy error vs time step on log axes](figures/fig_1a_convergence.png)
+
+On log axes, the maximum energy error follows the Δt² reference line.
+
 ### 2. Time reversibility
 
 ![Position error after 50 orbits forward and back](figures/fig_1b_deviation.png)
@@ -64,12 +68,22 @@ Starting from JPL Horizons positions and velocities, I integrated the Sun, eight
 
 The Sun doesn't sit still. Pulled mainly by Jupiter, it drifts up to 1.79 solar radii from its starting position as it orbits the Solar System's center of mass.
 
-### 4. Mercury's perihelion precession (in progress)
+### 4. Mercury's perihelion precession
 
-![Mercury's orbit under three scenarios](figures/fig_G6_orbits.png)
+![Mercury's orbit with the Sun alone, with a heavier Jupiter, and with a GR-style correction](figures/fig_G6_orbits.png)
 
-I compared Mercury's orbit with the Sun alone, with a 10× heavier Jupiter added, and with a relativistic-style 1/r² correction. Both perturbations make the ellipse rotate into a rosette. I'm currently measuring how much precession the integrator itself introduces at this step size, so the physical effects can be separated from numerical error before I report rates.
+A two-body Newtonian orbit shouldn't precess, so I first ran the Sun and Mercury alone to measure how much drift the integrator itself adds. That numerical floor is −0.0315° per orbit at 360 steps per orbit, and it shrinks by exactly 4× each time the step is halved, the Δt² scaling expected from Verlet.
 
+![Cumulative perihelion shift for all three runs, and the GR run compared with theory](figures/fig_G6_precession.png)
+
+I then added a GR-style correction to gravity, F/m = −(GM/r²)(1 + α/r²), using α = 10⁻⁴ so the effect shows up within 2000 orbits. After subtracting the floor, the perihelion advances 0.2622° per orbit, within 0.09% of the analytic prediction 2πα/p². The real relativistic value, α ≈ 1.1 × 10⁻⁸, corresponds to Mercury's famous 43″ per century. Angles are measured relative to the Sun, because a 10× Jupiter moves the Sun about 0.05 AU and would otherwise fake a large precession.
+
+| Configuration (360 steps/orbit, 2000 orbits) | Precession (deg/orbit) | Rate (″/century) |
+|---|---|---|
+| Sun + Mercury (numerical floor) | −0.0315 | −47,127 |
+| + Jupiter ×10 (floor subtracted) | +0.0014 | +2,119 |
+| + GR, α = 10⁻⁴ (floor subtracted) | +0.2622 | +391,868 |
+| Predicted, 2πα/p² | +0.2619 | +391,524 |
 
 ## Full Report
 
