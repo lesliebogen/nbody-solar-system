@@ -87,3 +87,5 @@ I then added a GR-style correction to gravity, F/m = −(GM/r²)(1 + α/r²), us
 
 ## Full Report
 
+[report/nbody_solar_system_report.pdf](report/nbody_solar_system_report.pdf)
+
